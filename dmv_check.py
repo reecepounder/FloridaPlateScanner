@@ -7,7 +7,7 @@ Usage:
 - Call the check() function with no arguments to test all 3-letter combinations.
 - Call the check(letters=n) function with n as the number of letters in the combinations to test. Results will be saved to a file named n_letters_0000.json, where 0000 is the current epoch time.
 - Call the check(letters=n, returnValues=True) function to get a list of available values instead of saving them to a file.
-- Call the check(letters=n, printDebugStatements=False) function to disable progress information from being printed to the console. It will default to the state of __debug__ if unset.
+- Call the check(letters=n, printDebugStatements=False) function to disable progress information from being printed to the console. It will default to the state of debug if unset.
 
 
 Author: Reece Pounder
@@ -60,6 +60,7 @@ def check(letters=3, *, returnValues=False, printDebugStatements=__debug__):
 
     use = []
     available = []
+    correlation = ["", "One", "Two", "Three", "Four", "Five"]
 
     # Chop the permutations into chunks of 5, because DMV only accepts 5 at a time.
     max_chunk_size = 5
@@ -73,7 +74,6 @@ def check(letters=3, *, returnValues=False, printDebugStatements=__debug__):
     # Iterate permutations to use
     for x in use:
         formValues = formValuesOriginal.copy()
-        correlation = ["", "One", "Two", "Three", "Four", "Five"]
         numsEntered = []
 
         # For every permutation, add it as a key
@@ -104,7 +104,7 @@ def check(letters=3, *, returnValues=False, printDebugStatements=__debug__):
             ' available.')
 
     if not returnValues:
-        f = open(str(letters) + "_letters_" + str(time.time()) + ".json", "w")
+        f = open(correlation[letters] + "_letters_" + str(time.time()) + ".json", "w")
         f.write(json.dumps(available))
         f.close()
         if printDebugStatements:
