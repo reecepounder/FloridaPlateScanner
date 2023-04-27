@@ -11,7 +11,7 @@ def check(letters = 3):
   print()
   t0 = time.time()
 
-  arr = list(map("".join, product('ABCDEFGHIJKLMNOPQRSTUVWXYZ', repeat=letters)))
+  arr = list(map("".join, product('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', repeat=letters)))
   print("Testing " + str(letters) + "-letter combinations. " + str(len(arr)) + ' values to test. This will take a while...')
   use = []
   available = []
